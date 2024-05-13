@@ -1,0 +1,68 @@
+﻿@page
+@using Agenda.Data
+@model IndexModel
+@inject ApplicationDbContext DbContext
+@{
+    ViewData["Title"] = "Início";
+}
+
+<style>
+    .link-calendario {
+        text-decoration: none;
+        color: black;
+    }
+
+        .link-calendario:hover {
+            color: black;
+        }
+
+    .fc .fc-daygrid-event {
+        border-color: #0000005e !important;
+        cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 3px;
+    }
+
+        .fc .fc-daygrid-event:hover {
+            background: gray !important;
+        }
+
+</style>
+<div class="text-center">
+    <h1 class="display-4">Bem-vindo</h1>
+</div>
+<div style="display: grid;place-items: center;">
+    <div style="width: 800px;">
+        <div id="calendario"></div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var calendarEl = document.getElementById('calendario');
+
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: @Html.Raw(Json.Serialize(Model.EventosJson.Value)),
+                eventContent: function (info) {
+                    return {
+                        html: '<a class="link-calendario" href="/IncluirEditarTarefa/?id=' + info.event.id + '">' + info.event.title + '</a>'
+                    };
+                },
+                eventClick: function (info) {
+                    window.location.href = "/IncluirEditarTarefa/?id=" + info.event.id;
+                },
+                eventBackgroundColor: 'backgroundColor',
+                eventBorderColor: 'borderColor'
+            });
+
+            calendar.setOption('locale', 'pt-br');
+
+            calendar.render();
+        });
+    </script>
+}

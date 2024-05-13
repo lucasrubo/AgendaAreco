@@ -1,0 +1,56 @@
+﻿@page
+@model Agenda.Pages.AnaliseTarefasModel
+@{
+    ViewData["Title"] = "Análise de Tarefas";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<form method="get" style="padding-bottom:20px;">
+    <div class="form-row" style="display:flex" >
+        <div class="form-group col-md-3" style="padding-right: 10px;">
+            <label for="dataInicio">Data de Início</label>
+            <input type="date" class="form-control" id="dataInicio" name="dataInicio" value="@Model.DataInicio?.ToString("yyyy-MM-dd")">
+        </div>
+        <div class="form-group col-md-3" style="padding-right: 10px;">
+            <label for="dataFim">Data de Fim</label>
+            <input type="date" class="form-control" id="dataFim" name="dataFim" value="@Model.DataFim?.ToString("yyyy-MM-dd")">
+        </div>
+        <div class="form-group col-md-1">
+            <label>&nbsp;</label>
+            <button type="submit" class="form-control btn btn-primary">Filtrar</button>
+        </div>
+    </div>
+</form>
+
+@if (Model.Estatisticas != null && Model.Estatisticas.Any())
+{
+    <h2>Estatísticas</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Dia</th>
+                <th scope="col">Total de Horas</th>
+                <th scope="col">Total de Tarefas</th>
+                <th scope="col">Média de Horas</th>
+                <th scope="col">Percentual Concluídas</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var estatistica in Model.Estatisticas)
+            {
+                <tr>
+                    <td>@estatistica.Dia</td>
+                    <td>@estatistica.TotalHoras</td>
+                    <td>@estatistica.TotalTarefas</td>
+                    <td>@estatistica.MediaHoras.ToString("0.00")</td>
+                    <td>@estatistica.PercentualConcluidas.ToString("0.00") %</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Não há estatísticas disponíveis para o período selecionado.</p>
+}

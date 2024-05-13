@@ -1,0 +1,54 @@
+﻿@page
+@model IncluirEditarTarefaModel
+@{
+    ViewData["Title"] = Model.Tarefa.Id == 0 ? "Adicionar Nova Tarefa" : "Editar Tarefa";
+}
+
+
+<h1>@ViewData["Title"]</h1>
+
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form method="post">
+    <div class="form-group">
+        <label asp-for="Tarefa.Titulo">Título</label>
+        <input asp-for="Tarefa.Titulo" class="form-control" value="@Model.Tarefa.Titulo" required />
+        <span asp-validation-for="Tarefa.Titulo" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Tarefa.Descricao">Descrição</label>
+        <textarea asp-for="Tarefa.Descricao" class="form-control">@Model.Tarefa.Descricao</textarea>
+        <span asp-validation-for="Tarefa.Descricao" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Tarefa.Data">Data</label>
+        <input asp-for="Tarefa.Data" type="date" class="form-control" min="@DateTime.Now.ToString("yyyy-MM-dd")" value="@(Model.Tarefa.Data.ToString("yyyy-MM-dd") != "0001-01-01" ? Model.Tarefa.Data.ToString("yyyy-MM-dd") : DateTime.Now.ToString("yyyy-MM-dd"))" required>
+        <span asp-validation-for="Tarefa.Data" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Tarefa.HoraInicio">Hora de Início</label>
+        <input asp-for="Tarefa.HoraInicio" type="time" class="form-control" value="@Model.Tarefa.HoraInicio.ToString("hh\\:mm")" required>
+        <span asp-validation-for="Tarefa.HoraInicio" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Tarefa.HoraFim">Hora de Término</label>
+        <input asp-for="Tarefa.HoraFim" type="time" class="form-control" value="@Model.Tarefa.HoraFim.ToString("hh\\:mm")" required>
+        <span asp-validation-for="Tarefa.HoraFim" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Tarefa.Prioridade">Prioridade</label>
+        <select asp-for="Tarefa.Prioridade" class="form-control">
+            <option value="Alta" selected="@(Model.Tarefa.Prioridade == "Alta" ? "selected" : null)">Alta</option>
+            <option value="Média" selected="@(Model.Tarefa.Prioridade == "Média" ? "selected" : null)">Média</option>
+            <option value="Baixa" selected="@(Model.Tarefa.Prioridade == "Baixa" ? "selected" : null)">Baixa</option>
+        </select>
+
+    </div>
+    <div class="form-group form-check">
+        <input asp-for="Tarefa.TarefaFinalizada" type="checkbox" class="form-check-input" checked="@(Model.Tarefa.TarefaFinalizada ? "checked" : null)">
+        <label class="form-check-label" asp-for="Tarefa.TarefaFinalizada">Tarefa Finalizada?</label>
+    </div>
+    <input hidden type='number' min='0' asp-for="Tarefa.Id" value="@Model.Tarefa.Id">
+
+    <button type="submit" class="btn btn-primary">Salvar</button>
+</form>

@@ -1,0 +1,49 @@
+﻿@page
+@model ListagemTarefasModel
+@{
+    ViewData["Title"] = "Listagem de Tarefas";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-page="IncluirEditarTarefa">Adicionar Nova Tarefa</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Título</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th>Hora de Início</th>
+            <th>Hora de Fim</th>
+            <th>Prioridade</th>
+            <th>Tarefa Finalizada?</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody >
+        @foreach (var tarefa in Model.Tarefas)
+        {
+            <tr style="
+                @(tarefa.TarefaFinalizada ? "background: #e2ffe0;" : null)
+                @(tarefa.Prioridade == "Média" ? "background:#ffffea;" : null)
+                @(tarefa.Prioridade == "Alta" && !tarefa.TarefaFinalizada? "background:#ffeaea;" : null)
+            ">
+                <td>@tarefa.Titulo</td>
+                <td>@tarefa.Descricao</td>
+                <td>@tarefa.Data.ToShortDateString()</td>
+                <td>@tarefa.HoraInicio</td>
+                <td>@tarefa.HoraFim</td>
+                <td>@tarefa.Prioridade</td>
+                <td>@(tarefa.TarefaFinalizada ? "Sim" : "Não")</td>
+                <td>
+                    <a asp-page-handler="FinalizarTarefa" asp-route-id="@tarefa.Id">Finalizar</a> |
+                    <a asp-page="./IncluirEditarTarefa" asp-route-id="@tarefa.Id">Editar</a> |
+                    <a asp-page-handler="ExcluirTarefa" asp-route-id="@tarefa.Id">Excluir</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
