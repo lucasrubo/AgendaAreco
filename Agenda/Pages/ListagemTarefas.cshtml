@@ -35,8 +35,8 @@
                 <td>@tarefa.Titulo</td>
                 <td>@tarefa.Descricao</td>
                 <td>@tarefa.Data.ToShortDateString()</td>
-                <td>@tarefa.HoraInicio</td>
-                <td>@tarefa.HoraFim</td>
+                <td>@tarefa.HoraInicio.ToString(@"hh\:mm")</td>
+                <td>@tarefa.HoraFim.ToString(@"hh\:mm")</td>
                 <td>@tarefa.Prioridade</td>
                 <td>@(tarefa.TarefaFinalizada ? "Sim" : "Não")</td>
                 <td>

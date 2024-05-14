@@ -22,10 +22,12 @@ namespace Agenda.Pages
             {
                 id = t.Id,
                 title = t.Titulo,
-                start = t.Data.ToString("yyyy-MM-dd"), // Defina a data inicial do evento
-                end = t.Data.AddDays(1).ToString("yyyy-MM-dd"), // Defina a data final do evento
+                start = t.Data.ToString("yyyy-MM-dd") + "T" + t.HoraInicio.ToString(@"hh\:mm"), // Data e hora de início do evento
+                end = t.Data.ToString("yyyy-MM-dd") + "T" + t.HoraFim.ToString(@"hh\:mm"), // Data e hora de término do evento
                 priority = t.Prioridade, // Adicione qualquer outra propriedade necessária
-                backgroundColor = GetBackgroundColor(t.Prioridade, t.TarefaFinalizada) // Defina a cor de fundo com base na prioridade
+                color = "black",
+                eventDisplay = "block",
+                classNames = GetBackgroundColor(t.Prioridade, t.TarefaFinalizada)
             }).ToList();
 
             EventosJson = new JsonResult(eventos);
@@ -35,18 +37,23 @@ namespace Agenda.Pages
         {
             if (finalizada)
             {
-                return "#e2ffe0";
+                //return "#e2ffe0";
+                return "finalizada";
             }
             switch (prioridade)
             {
                 case "Alta":
-                    return "#ffa7a7";
+                    //return "#ffa7a7";
+                    return "alta";
                 case "Média":
-                    return "#ffffa7";
+                    //return "#ffffa7";
+                    return "media";
                 case "Baixa":
-                    return "#FFFFFF";
+                    //return "#FFFFFF";
+                    return "baixa";
                 default:
-                    return "#FFFFFF";
+                    //return "#FFFFFF";
+                    return "default";
             }
         }
     }

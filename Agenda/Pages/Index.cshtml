@@ -17,24 +17,51 @@
         color: black;
     }
 
-    .fc .fc-daygrid-event {
-        border-color: #0000005e !important;
-        cursor: pointer;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        /*white-space: nowrap;*/ 
-        white-space: break-spaces;
-        padding: 3px;
-    }
-
-    .fc .fc-daygrid-event:hover {
-        background: gray !important;
-    }
-
     .fc-day-today {
         background-color: #ababab26 !important;
     }
 
+
+    a.fc-event.fc-event-start.fc-event-end.fc-event-future.fc-timegrid-event.fc-v-event.fc-timegrid-event-short {
+        min-height: 23px !important;
+    }
+
+    .finalizada, .alta, .media, .baixa, .default {
+        cursor: pointer;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        /*white-space: nowrap;*/
+        white-space: break-spaces;
+        padding: 3px;
+    }
+
+        .finalizada:hover, .alta:hover, .media:hover, .baixa:hover, .default:hover {
+            background: gray !important;
+    }
+    .finalizada {
+        border: 1px solid #0000005e !important;
+        background:#e2ffe0 !important;
+    }
+
+    .alta {
+        border: 1px solid #0000005e !important;
+        background: #ffa7a7 !important;
+    }
+
+    .media {
+        border: 1px solid #0000005e !important;
+        background: #ffffa7 !important;
+    }
+
+    .baixa {
+        border: 1px solid #0000005e !important;
+        background: #FFFFFF !important;
+    }
+
+    .default {
+        border: 1px solid #0000005e !important;
+        background: #FFFFFF !important;
+    }
 </style>
 <div class="text-center">
     <h1 class="display-4">Bem-vindo</h1>
@@ -53,6 +80,24 @@
 
             var calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
+                headerToolbar: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
+                },
+                navLinks: true, // can click day/week names to navigate views
+                titleFormat: {
+                    month: 'long',
+                    year: 'numeric',
+                    day: 'numeric'
+                },
+                buttonText: {
+                    today: 'hoje',
+                    month: 'mês',
+                    week: 'semana',
+                    day: 'dia',
+                    list: 'lista'
+                },
                 events: @Html.Raw(Json.Serialize(Model.EventosJson.Value)),
                 eventContent: function (info) {
                     return {
