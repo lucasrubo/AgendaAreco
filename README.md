@@ -5,7 +5,7 @@ Neste projeto me aventurei um pouco com C# usando fullcalendar para listar as ta
 # Como instalar
 
 - Baixe o arquivo.
-- Verifique se tenha instalado tudo do [Requirements](https://github.com/lucasrubo/AgendaAreco/README.md#agenda).
+- Verifique se tenha instalado tudo do [Requirements](#requirements).
 - Abra a solução `Agenda.sln`.
 - Altere a `linha 18` do `Program.cs` com os dados do seu banco de dados.
 - Após alterar esse dados rode os códigos abaixo para criação de banco de dados:
