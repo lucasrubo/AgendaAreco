@@ -35,7 +35,7 @@ namespace Agenda.Pages
             }
 
             var tarefas = await _context.Tarefas
-                .Where(t => t.Data >= DataInicio && t.Data <= DataFim)
+                .Where(t => t.Data >= DataInicio && t.Data <= DataFim).OrderByDescending(t => t.Data)
                 .ToListAsync();
 
             Estatisticas = tarefas
@@ -47,7 +47,7 @@ namespace Agenda.Pages
                     TotalTarefas = g.Count(),
                     MediaHoras = TimeSpan.FromHours(g.Average(t => (t.HoraFim - t.HoraInicio).TotalHours)), 
                     PercentualConcluidas = g.Count(t => t.TarefaFinalizada) * 100.0 / g.Count()
-                })
+                }) // Ordenando por data decrescente
                 .ToList();
         }
 

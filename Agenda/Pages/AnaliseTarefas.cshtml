@@ -4,6 +4,11 @@
     ViewData["Title"] = "Análise de Tarefas";
 }
 
+<style>
+    th,td{
+        text-align:center;
+    }
+</style>
 <h1>@ViewData["Title"]</h1>
 
 <form method="get" style="padding-bottom:20px;">
@@ -30,7 +35,7 @@
     <table class="table">
         <thead>
             <tr>
-                <th scope="col">Dia</th>
+                <th style='text-align:left;' scope="col">Data</th>
                 <th scope="col">Total de Horas</th>
                 <th scope="col">Total de Tarefas</th>
                 <th scope="col">Média de Horas</th>
@@ -41,7 +46,7 @@
             @foreach (var estatistica in Model.Estatisticas)
             {
                 <tr>
-                    <td>@estatistica.Dia</td>
+                    <td style='text-align:left;'>@estatistica.Dia</td>
                     <td>@estatistica.TotalHoras.ToString(@"hh\:mm")</td>
                     <td>@estatistica.TotalTarefas</td>
                     <td>@estatistica.MediaHoras.ToString(@"hh\:mm")</td>
