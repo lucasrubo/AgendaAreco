@@ -43,9 +43,9 @@ namespace Agenda.Pages
                 .Select(g => new EstatisticaTarefa
                 {
                     Dia = g.Key.ToShortDateString(),
-                    TotalHoras = g.Sum(t => (t.HoraFim - t.HoraInicio).TotalHours),
+                    TotalHoras = TimeSpan.FromHours(g.Sum(t => (t.HoraFim - t.HoraInicio).TotalHours)),
                     TotalTarefas = g.Count(),
-                    MediaHoras = g.Average(t => (t.HoraFim - t.HoraInicio).TotalHours),
+                    MediaHoras = TimeSpan.FromHours(g.Average(t => (t.HoraFim - t.HoraInicio).TotalHours)), 
                     PercentualConcluidas = g.Count(t => t.TarefaFinalizada) * 100.0 / g.Count()
                 })
                 .ToList();
@@ -56,9 +56,9 @@ namespace Agenda.Pages
     public class EstatisticaTarefa
     {
         public string Dia { get; set; }
-        public double TotalHoras { get; set; }
+        public TimeSpan TotalHoras { get; set; }
         public int TotalTarefas { get; set; }
-        public double MediaHoras { get; set; }
+        public TimeSpan MediaHoras { get; set; }
         public double PercentualConcluidas { get; set; }
     }
 }

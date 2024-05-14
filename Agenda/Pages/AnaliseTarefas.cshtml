@@ -41,9 +41,9 @@
             {
                 <tr>
                     <td>@estatistica.Dia</td>
-                    <td>@estatistica.TotalHoras</td>
+                    <td>@estatistica.TotalHoras.ToString(@"hh\:mm")</td>
                     <td>@estatistica.TotalTarefas</td>
-                    <td>@estatistica.MediaHoras.ToString("0.00")</td>
+                    <td>@estatistica.MediaHoras.ToString(@"hh\:mm")</td>
                     <td>@estatistica.PercentualConcluidas.ToString("0.00") %</td>
                 </tr>
             }

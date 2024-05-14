@@ -27,9 +27,9 @@
         @foreach (var tarefa in Model.Tarefas)
         {
             <tr style="
-                @(tarefa.TarefaFinalizada ? "background: #e2ffe0;" : null)
                 @(tarefa.Prioridade == "Média" ? "background:#ffffea;" : null)
                 @(tarefa.Prioridade == "Alta" && !tarefa.TarefaFinalizada? "background:#ffeaea;" : null)
+                @(tarefa.TarefaFinalizada ? "background: #e2ffe0;" : null)
             ">
                 <td>@tarefa.Titulo</td>
                 <td>@tarefa.Descricao</td>
@@ -39,7 +39,7 @@
                 <td>@tarefa.Prioridade</td>
                 <td>@(tarefa.TarefaFinalizada ? "Sim" : "Não")</td>
                 <td>
-                    <a asp-page-handler="FinalizarTarefa" asp-route-id="@tarefa.Id">Finalizar</a> |
+                    <span @(tarefa.TarefaFinalizada ? "hidden" : null)><a asp-page-handler="FinalizarTarefa" asp-route-id="@tarefa.Id">Finalizar</a> |</span>
                     <a asp-page="./IncluirEditarTarefa" asp-route-id="@tarefa.Id">Editar</a> |
                     <a asp-page-handler="ExcluirTarefa" asp-route-id="@tarefa.Id">Excluir</a>
                 </td>
