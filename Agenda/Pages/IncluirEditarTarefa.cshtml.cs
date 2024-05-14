@@ -95,10 +95,13 @@ namespace Agenda.Pages
 
             foreach (var tarefaExistente in tarefasNoMesmoDia)
             {
-                if ((novaTarefa.HoraInicio >= tarefaExistente.HoraInicio && novaTarefa.HoraInicio < tarefaExistente.HoraFim) ||
-                    (novaTarefa.HoraFim > tarefaExistente.HoraInicio && novaTarefa.HoraFim <= tarefaExistente.HoraFim))
+                if (novaTarefa.Id != tarefaExistente.Id)
                 {
-                    return true; // Sobreposição de horários detectada
+                    if ((novaTarefa.Data == tarefaExistente.Data && novaTarefa.HoraInicio >= tarefaExistente.HoraInicio && novaTarefa.HoraInicio < tarefaExistente.HoraFim) ||
+                        (novaTarefa.Data == tarefaExistente.Data && novaTarefa.HoraFim > tarefaExistente.HoraInicio && novaTarefa.HoraFim <= tarefaExistente.HoraFim))
+                    {
+                        return true; // Sobreposição de horários detectada
+                    }
                 }
             }
 

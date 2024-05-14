@@ -7,21 +7,23 @@
 }
 
 <style>
+
     .link-calendario {
         text-decoration: none;
         color: black;
     }
 
-        .link-calendario:hover {
-            color: black;
-        }
+    .link-calendario:hover {
+        color: black;
+    }
 
     .fc .fc-daygrid-event {
         border-color: #0000005e !important;
         cursor: pointer;
         overflow: hidden;
         text-overflow: ellipsis;
-        white-space: nowrap;
+        /*white-space: nowrap;*/ 
+        white-space: break-spaces;
         padding: 3px;
     }
 
@@ -37,7 +39,7 @@
 <div class="text-center">
     <h1 class="display-4">Bem-vindo</h1>
 </div>
-<div style="display: grid;place-items: center;">
+<div style="display: grid;place-items: center;overflow: auto;">
     <div style="width: 800px;">
         <div id="calendario"></div>
     </div>
@@ -54,7 +56,7 @@
                 events: @Html.Raw(Json.Serialize(Model.EventosJson.Value)),
                 eventContent: function (info) {
                     return {
-                        html: '<a class="link-calendario" href="/IncluirEditarTarefa/?id=' + info.event.id + '">' + info.event.title + '</a>'
+                        html: '<a titile="' + info.event.title + '" class="link-calendario" href="/IncluirEditarTarefa/?id=' + info.event.id + '">' + info.event.title + '</a>'
                     };
                 },
                 eventClick: function (info) {

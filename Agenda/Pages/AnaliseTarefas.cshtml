@@ -7,7 +7,7 @@
 <h1>@ViewData["Title"]</h1>
 
 <form method="get" style="padding-bottom:20px;">
-    <div class="form-row" style="display:flex" >
+    <div class="form-row" style="display: ruby-text;text-align: left;padding-bottom:10px;">
         <div class="form-group col-md-3" style="padding-right: 10px;">
             <label for="dataInicio">Data de Início</label>
             <input type="date" class="form-control" id="dataInicio" name="dataInicio" value="@Model.DataInicio?.ToString("yyyy-MM-dd")">
@@ -26,6 +26,7 @@
 @if (Model.Estatisticas != null && Model.Estatisticas.Any())
 {
     <h2>Estatísticas</h2>
+    <div style="overflow: auto;max-width: 100%;">
     <table class="table">
         <thead>
             <tr>
@@ -49,6 +50,7 @@
             }
         </tbody>
     </table>
+    </div>
 }
 else
 {
