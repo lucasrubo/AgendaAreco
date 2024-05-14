@@ -43,14 +43,14 @@ Neste projeto me aventurei um pouco com C# usando fullcalendar para listar as ta
      docker run -d -p 8080:80 --name meu-container nome-da-sua-imagem
     ```
 
-        Isso executará o contêiner em segundo plano (-d), mapeará a porta 8080 do host para a porta 80 do contêiner (-p 8080:80), e dará um nome ao contêiner (--name meu-container).
+     Isso executará o contêiner em segundo plano (-d), mapeará a porta 8080 do host para a porta 80 do contêiner (-p 8080:80), e dará um nome ao contêiner (--name meu-container).
 
 3.  Verifique se o contêiner está em execução:
     Você pode verificar se o contêiner está em execução com o comando:
     ```
      docker ps
     ```
-        Isso listará todos os contêineres em execução no seu sistema.
+     Isso listará todos os contêineres em execução no seu sistema.
 
 # Requirements
 
